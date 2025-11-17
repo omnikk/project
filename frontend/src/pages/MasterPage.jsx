@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { fetchMasterById } from "../api/api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,6 +7,7 @@ import BookingForm from "../components/BookingForm";
 
 const MasterPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [master, setMaster] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,31 +18,115 @@ const MasterPage = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <p>Загрузка мастера...</p>;
-  if (!master) return <p>Мастер не найден</p>;
+  const handleBookingSuccess = () => {
+    setTimeout(() => {
+      navigate('/profile');
+    }, 2000);
+  };
+
+  if (loading) {
+    return (
+      <div className="app">
+        <Header />
+        <div className="loading">
+          <p>  Загрузка информации о мастере...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!master) {
+    return (
+      <div className="app">
+        <Header />
+        <div className="container">
+          <div className="content">
+            <h1>  Мастер не найден</h1>
+            <Link to="/" className="back-link">← Вернуться на главную</Link>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className="app">
       <Header />
+      
       <div className="container">
-        <h1>Мастер: {master.name}</h1>
-        
         <div className="content">
-          <div>
-            <h2>Информация</h2>
-            <p>Опыт работы: 5+ лет</p>
-            <p>Специализация: Все виды стрижек</p>
+          <div style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            padding: '40px',
+            borderRadius: '15px',
+            marginBottom: '40px',
+            textAlign: 'center'
+          }}>
+            <div style={{fontSize: '5rem', marginBottom: '20px'}}> </div>
+            <h1>{master.name}</h1>
+            <p style={{fontSize: '1.2rem', marginTop: '10px'}}>
+                {master.specialization}
+            </p>
+            <p style={{fontSize: '1rem', marginTop: '5px', opacity: '0.9'}}>
+                {master.experience}
+            </p>
+          </div>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '30px',
+            marginBottom: '40px'
+          }}>
+            <div style={{
+              background: '#f5f7fa',
+              padding: '30px',
+              borderRadius: '15px'
+            }}>
+              <h2 style={{color: '#667eea', marginBottom: '20px'}}>
+                  О мастере
+              </h2>
+              <div style={{color: '#666', lineHeight: '1.8'}}>
+                <p>  Профессиональное образование</p>
+                <p>  Регулярное повышение квалификации</p>
+                <p>  Индивидуальный подход</p>
+                <p>  Использование качественных материалов</p>
+                <p>  Большой опыт работы</p>
+              </div>
+            </div>
+            
+            <div style={{
+              background: '#f5f7fa',
+              padding: '30px',
+              borderRadius: '15px'
+            }}>
+              <h2 style={{color: '#667eea', marginBottom: '20px'}}>
+                  Услуги
+              </h2>
+              <div style={{color: '#666', lineHeight: '1.8'}}>
+                <p>   Стрижки любой сложности</p>
+                <p>  Окрашивание волос</p>
+                <p>     Укладки и прически</p>
+                <p>  Маникюр и педикюр</p>
+                <p>  SPA-процедуры</p>
+              </div>
+            </div>
           </div>
           
           <BookingForm 
             salonId={master.salon_id} 
             masterId={master.id}
-            onSuccess={() => alert("Запись успешно создана!")}
+            masterName={master.name}
+            onSuccess={handleBookingSuccess}
           />
+          
+          <Link to="/" className="back-link">← Вернуться на главную</Link>
         </div>
-        
-        <Link to="/">← Назад на главную</Link>
       </div>
+      
       <Footer />
     </div>
   );

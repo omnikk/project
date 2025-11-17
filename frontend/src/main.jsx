@@ -10,12 +10,14 @@ import Profile from "./pages/Profile";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/salon/:id" element={<SalonPage />} />
-      <Route path="/master/:id" element={<MasterPage />} />
-      <Route path="/profile" element={<Profile />} />
-    </Routes>
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/salon/:id" element={<SalonPage />} />
+        <Route path="/master/:id" element={<MasterPage />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
 );

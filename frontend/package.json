@@ -1,25 +1,24 @@
 {
-  "name": "frontend",
+  "name": "beauty-salon-frontend",
   "version": "1.0.0",
-  "description": "",
-  "main": "vite.config.js",
+  "description": "Фронтенд для салона красоты",
+  "type": "module",
   "scripts": {
-    "dev": "npx vite",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.5",
+    "leaflet": "^1.9.4",
+    "pigeon-maps": "^0.22.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.1",
-    "vite": "^7.2.2"
+    "vite": "^6.0.0"
   }
 }

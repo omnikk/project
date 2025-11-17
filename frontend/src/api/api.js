@@ -1,6 +1,5 @@
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "http://localhost:8080";
 
-// Salons
 export const fetchSalons = async () => {
   const res = await fetch(`${BASE_URL}/salons/`);
   if (!res.ok) throw new Error("Ошибка при получении салонов");
@@ -13,7 +12,6 @@ export const fetchSalonById = async (id) => {
   return res.json();
 };
 
-// Masters
 export const fetchMasters = async (salonId = null) => {
   const url = salonId 
     ? `${BASE_URL}/masters/?salon_id=${salonId}` 
@@ -29,7 +27,6 @@ export const fetchMasterById = async (id) => {
   return res.json();
 };
 
-// Appointments
 export const createAppointment = async (appointmentData) => {
   const res = await fetch(`${BASE_URL}/appointments/`, {
     method: "POST",
@@ -40,7 +37,15 @@ export const createAppointment = async (appointmentData) => {
   return res.json();
 };
 
-// Clients
+export const fetchAppointments = async (clientId = null) => {
+  const url = clientId 
+    ? `${BASE_URL}/appointments/?client_id=${clientId}` 
+    : `${BASE_URL}/appointments/`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Ошибка при получении записей");
+  return res.json();
+};
+
 export const createClient = async (clientData) => {
   const res = await fetch(`${BASE_URL}/clients/`, {
     method: "POST",
@@ -48,5 +53,11 @@ export const createClient = async (clientData) => {
     body: JSON.stringify(clientData),
   });
   if (!res.ok) throw new Error("Ошибка при создании клиента");
+  return res.json();
+};
+
+export const fetchClientById = async (id) => {
+  const res = await fetch(`${BASE_URL}/clients/${id}`);
+  if (!res.ok) throw new Error("Ошибка при получении клиента");
   return res.json();
 };

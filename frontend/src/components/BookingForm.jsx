@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createClient, createAppointment } from "../api/api";
 
-const BookingForm = ({ salonId, masterId, onSuccess }) => {
+const BookingForm = ({ salonId, masterId, masterName, onSuccess }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
@@ -9,21 +9,21 @@ const BookingForm = ({ salonId, masterId, onSuccess }) => {
   const [service, setService] = useState("Стрижка");
   const [loading, setLoading] = useState(false);
 
+  const today = new Date().toISOString().split('T')[0];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Создаем клиента
       const client = await createClient({
         name,
         phone,
         salon_id: salonId
       });
 
-      // Создаем запись
       const startTime = new Date(`${date}T${time}`);
-      const endTime = new Date(startTime.getTime() + 60 * 60 * 1000); // +1 час
+      const endTime = new Date(startTime.getTime() + 60 * 60 * 1000);
 
       await createAppointment({
         master_id: masterId,
@@ -33,71 +33,88 @@ const BookingForm = ({ salonId, masterId, onSuccess }) => {
         service
       });
 
-      alert(`Спасибо, ${name}! Вы записаны на ${date} в ${time}`);
+      alert(`  Отлично, ${name}!\n\nВы записаны на ${service.toLowerCase()}\nК мастеру: ${masterName}\nДата: ${date} в ${time}\n\nЖдём вас!`);
+      
       setName("");
       setPhone("");
       setDate("");
       onSuccess && onSuccess();
     } catch (error) {
-      alert("Ошибка при записи: " + error.message);
+      alert("  Ошибка при записи: " + error.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="form">
-      <h2>Записаться на услугу</h2>
+    <div className="booking-form">
+      <h2>  Записаться на услугу</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Имя:</label>
+        <div className="form-group">
+          <label>Ваше имя:</label>
           <input 
             type="text" 
             value={name} 
             onChange={e => setName(e.target.value)} 
+            placeholder="Введите ваше имя"
             required 
           />
         </div>
-        <div>
+        
+        <div className="form-group">
           <label>Телефон:</label>
           <input 
             type="tel" 
             value={phone} 
             onChange={e => setPhone(e.target.value)} 
+            placeholder="+7 (999) 123-45-67"
             required 
           />
         </div>
-        <div>
+        
+        <div className="form-group">
           <label>Дата:</label>
           <input 
             type="date" 
             value={date} 
+            min={today}
             onChange={e => setDate(e.target.value)} 
             required 
           />
         </div>
-        <div>
+        
+        <div className="form-group">
           <label>Время:</label>
           <select value={time} onChange={e => setTime(e.target.value)}>
+            <option value="09:00">09:00</option>
             <option value="10:00">10:00</option>
             <option value="11:00">11:00</option>
             <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
             <option value="14:00">14:00</option>
             <option value="15:00">15:00</option>
             <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
           </select>
         </div>
-        <div>
+        
+        <div className="form-group">
           <label>Услуга:</label>
           <select value={service} onChange={e => setService(e.target.value)}>
-            <option value="Стрижка">Стрижка</option>
-            <option value="Окрашивание">Окрашивание</option>
-            <option value="Укладка">Укладка</option>
-            <option value="Маникюр">Маникюр</option>
+            <option value="Стрижка">   Стрижка</option>
+            <option value="Окрашивание">  Окрашивание</option>
+            <option value="Укладка">     Укладка</option>
+            <option value="Маникюр">  Маникюр</option>
+            <option value="Педикюр">  Педикюр</option>
+            <option value="SPA-уход">  SPA-уход</option>
           </select>
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Загрузка..." : "Записаться"}
+        
+        <button type="submit" className="btn" disabled={loading}>
+          {loading ? "  Загрузка..." : "  Записаться"}
         </button>
       </form>
     </div>

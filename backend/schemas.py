@@ -2,35 +2,34 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import List, Optional
 
-# Schemas для Salon
 class SalonBase(BaseModel):
     name: str
     address: str
+    lat: Optional[float] = 55.751574
+    lon: Optional[float] = 37.573856
 
 class SalonCreate(SalonBase):
     pass
 
 class Salon(SalonBase):
     id: int
-    
     class Config:
         from_attributes = True
 
-# Schemas для Master
 class MasterBase(BaseModel):
     name: str
     salon_id: int
+    specialization: Optional[str] = "Парикмахер"
+    experience: Optional[str] = "3+ года"
 
 class MasterCreate(MasterBase):
     pass
 
 class Master(MasterBase):
     id: int
-    
     class Config:
         from_attributes = True
 
-# Schemas для Client
 class ClientBase(BaseModel):
     name: str
     phone: str
@@ -41,11 +40,9 @@ class ClientCreate(ClientBase):
 
 class Client(ClientBase):
     id: int
-    
     class Config:
         from_attributes = True
 
-# Schemas для Appointment
 class AppointmentBase(BaseModel):
     master_id: int
     client_id: int
@@ -58,10 +55,14 @@ class AppointmentCreate(AppointmentBase):
 
 class Appointment(AppointmentBase):
     id: int
-    
     class Config:
         from_attributes = True
 
-# Расширенные schemas с вложенными данными
 class SalonWithMasters(Salon):
     masters: List[Master] = []
+
+class AppointmentWithDetails(Appointment):
+    master: Master
+    
+class ClientProfile(Client):
+    appointments: List[AppointmentWithDetails] = []

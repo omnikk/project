@@ -1,12 +1,14 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 
 class Salon(Base):
     __tablename__ = "salons"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     address = Column(String)
+    lat = Column(Float, default=55.751574)
+    lon = Column(Float, default=37.573856)
 
     masters = relationship("Master", back_populates="salon")
     clients = relationship("Client", back_populates="salon")
@@ -16,6 +18,8 @@ class Master(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     salon_id = Column(Integer, ForeignKey("salons.id"))
+    specialization = Column(String, default="Парикмахер")
+    experience = Column(String, default="3+ года")
 
     salon = relationship("Salon", back_populates="masters")
     appointments = relationship("Appointment", back_populates="master")

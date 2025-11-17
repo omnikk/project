@@ -1,33 +1,27 @@
 import React from "react";
-import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+import { Map, Marker } from "pigeon-maps";
+import { useNavigate } from "react-router-dom";
 
-const SalonMap = ({ salons, onSalonClick }) => {
-  // Центр карты - Москва по умолчанию
-  const defaultCenter = [55.751574, 37.573856];
+const SalonMap = ({ salons }) => {
+  const navigate = useNavigate();
   
   return (
-    <YMaps>
+    <div style={{ height: "500px", borderRadius: "15px", overflow: "hidden", marginBottom: "40px" }}>
       <Map 
-        defaultState={{ center: defaultCenter, zoom: 11 }} 
-        width="100%" 
-        height="500px"
+        defaultCenter={[55.751574, 37.573856]} 
+        defaultZoom={11}
+        height={500}
       >
         {salons.map((salon) => (
-          <Placemark
+          <Marker
             key={salon.id}
-            geometry={[55.751574 + salon.id * 0.01, 37.573856 + salon.id * 0.01]}
-            properties={{ 
-              balloonContent: `<strong>${salon.name}</strong><br/>${salon.address}` 
-            }}
-            options={{
-              preset: 'islands#redDotIcon'
-            }}
-            modules={['geoObject.addon.balloon']}
-            onClick={() => onSalonClick && onSalonClick(salon)}
+            anchor={[salon.lat || 55.751574, salon.lon || 37.573856]}
+            color="#667eea"
+            onClick={() => navigate(`/salon/${salon.id}`)}
           />
         ))}
       </Map>
-    </YMaps>
+    </div>
   );
 };
 

@@ -1,8 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <header>
-    <h1>Салон красоты</h1>
+    <div className="container">
+      <Link to="/" style={{textDecoration: 'none'}}>
+        <h1>     Салон Красоты</h1>
+      </Link>
+      <nav>
+        <Link to="/">Главная</Link>
+        <Link to="/profile">Профиль</Link>
+      </nav>
+    </div>
   </header>
 );
 
