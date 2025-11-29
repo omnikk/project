@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { fetchMasterById } from "../api/api";
+import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BookingForm from "../components/BookingForm";
 
 const MasterPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [master, setMaster] = useState(null);
+  const [salon, setSalon] = useState(null);
+  const [showBooking, setShowBooking] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchMasterById(id)
-      .then(data => setMaster(data))
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+    loadMaster();
   }, [id]);
 
-  const handleBookingSuccess = () => {
-    setTimeout(() => {
-      navigate('/profile');
-    }, 2000);
+  const loadMaster = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/masters/${id}`);
+      const data = await response.json();
+      setMaster(data);
+
+      const salonResponse = await fetch(
+        `http://localhost:8080/salons/${data.salon_id}`
+      );
+      const salonData = await salonResponse.json();
+      setSalon(salonData);
+    } catch (error) {
+      console.error("Ошибка загрузки мастера:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (loading) {
@@ -29,7 +38,7 @@ const MasterPage = () => {
       <div className="app">
         <Header />
         <div className="loading">
-          <p>  Загрузка информации о мастере...</p>
+          <p>Загрузка...</p>
         </div>
         <Footer />
       </div>
@@ -41,10 +50,7 @@ const MasterPage = () => {
       <div className="app">
         <Header />
         <div className="container">
-          <div className="content">
-            <h1>  Мастер не найден</h1>
-            <Link to="/" className="back-link">← Вернуться на главную</Link>
-          </div>
+          <p>Мастер не найден</p>
         </div>
         <Footer />
       </div>
@@ -54,91 +60,80 @@ const MasterPage = () => {
   return (
     <div className="app">
       <Header />
-      
+
       <div className="container">
         <div className="content">
-          <div style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            color: 'white',
-            padding: '40px',
-            borderRadius: '15px',
-            marginBottom: '40px',
-            textAlign: 'center'
-          }}>
-             <img 
-  src={master.photo_url || "https://med-rzn.ru/wp-content/uploads/2021/09/no_image-800x600-1.jpg"}
-  alt={master.name}
-  style={{
-    width: '150px',
-    height: '150px',
-    borderRadius: '50%',
-    objectFit: 'cover',
-    border: '4px solid white',
-    marginBottom: '20px'
-  }}
-/>
-            <h1>{master.name}</h1>
-            <p style={{fontSize: '1.2rem', marginTop: '10px'}}>
-                {master.specialization}
+          <div className="master-detail">
+            <img
+              src={master.photo_url}
+              alt={master.name}
+              style={{
+                width: "300px",
+                height: "300px",
+                objectFit: "cover",
+                borderRadius: "15px",
+                marginBottom: "20px",
+              }}
+            />
+
+            <h1 style={{ color: "#667eea", marginBottom: "10px" }}>
+              {master.name}
+            </h1>
+
+            {salon && (
+              <p style={{ color: "#666", fontSize: "1.1rem", marginBottom: "10px" }}>
+                Салон: {salon.name}
+              </p>
+            )}
+
+            <p style={{ color: "#666", fontSize: "1.1rem", marginBottom: "10px" }}>
+              {master.specialization}
             </p>
-            <p style={{fontSize: '1rem', marginTop: '5px', opacity: '0.9'}}>
-                {master.experience}
+
+            <p style={{ color: "#666", fontSize: "1rem", marginBottom: "30px" }}>
+              Опыт работы: {master.experience}
             </p>
+
+            <button
+              onClick={() => setShowBooking(true)}
+              style={{
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                color: "white",
+                border: "none",
+                padding: "15px 40px",
+                borderRadius: "25px",
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                cursor: "pointer",
+                boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
+              }}
+            >
+              Записаться
+            </button>
           </div>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '30px',
-            marginBottom: '40px'
-          }}>
-            <div style={{
-              background: '#f5f7fa',
-              padding: '30px',
-              borderRadius: '15px'
-            }}>
-              <h2 style={{color: '#667eea', marginBottom: '20px'}}>
-                  О мастере
-              </h2>
-              <div style={{color: '#666', lineHeight: '1.8'}}>
-                <p>  Профессиональное образование</p>
-                <p>  Регулярное повышение квалификации</p>
-                <p>  Индивидуальный подход</p>
-                <p>  Использование качественных материалов</p>
-                <p>  Большой опыт работы</p>
-              </div>
-            </div>
-            
-            <div style={{
-              background: '#f5f7fa',
-              padding: '30px',
-              borderRadius: '15px'
-            }}>
-              <h2 style={{color: '#667eea', marginBottom: '20px'}}>
-                  Услуги
-              </h2>
-              <div style={{color: '#666', lineHeight: '1.8'}}>
-                <p>   Стрижки любой сложности</p>
-                <p>  Окрашивание волос</p>
-                <p>     Укладки и прически</p>
-                <p>  Маникюр и педикюр</p>
-                <p>  SPA-процедуры</p>
-              </div>
-            </div>
-          </div>
-          
-          <BookingForm 
-            salonId={master.salon_id} 
-            masterId={master.id}
-            masterName={master.name}
-            onSuccess={handleBookingSuccess}
-          />
-          
-          <Link to="/" className="back-link">← Вернуться на главную</Link>
         </div>
       </div>
-      
+
       <Footer />
+
+      {showBooking && (
+        <BookingForm
+          master={master}
+          onClose={() => setShowBooking(false)}
+          onSuccess={() => {
+            setShowBooking(false);
+          }}
+        />
+      )}
+
+      <style>{`
+        .master-detail {
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
+          padding: 40px 20px;
+        }
+      `}</style>
     </div>
   );
 };

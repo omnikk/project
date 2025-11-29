@@ -33,7 +33,11 @@ const Header = () => {
             <Link to="/">Главная</Link>
             {user ? (
               <>
-                <Link to="/profile">Профиль ({user.name})</Link>
+                {user.role === "admin" ? (
+                  <Link to="/admin">Аналитика</Link>
+                ) : (
+                  <Link to="/profile">Профиль ({user.name})</Link>
+                )}
                 <button
                   onClick={handleLogout}
                   style={{
