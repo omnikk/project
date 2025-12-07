@@ -1,6 +1,6 @@
 # ОПИСАНИЕ ПРОГРАММЫ
 
-**Система управления салонами красоты**
+**Разработка веб-ресурса для сети салонов красоты с элементами бэкенд-обработки данных**
 
 Версия 1.0
 
@@ -195,7 +195,7 @@ Content-Type: `text/csv; charset=utf-8`
 
 
 database:
-<img width="1593" height="480" alt="image" src="https://github.com/user-attachments/assets/57f11a29-6055-4602-bfe8-412a95d2eedd" />
+<img width="1594" height="273" alt="image" src="https://github.com/user-attachments/assets/8a349868-ef42-4d3b-82ce-4954636da4a7" />
 
 Запуск:
 <img width="1905" height="366" alt="image" src="https://github.com/user-attachments/assets/946a088b-3bff-480d-99f4-328c4afc61de" />
