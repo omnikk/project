@@ -305,50 +305,61 @@ Content-Type: `text/csv; charset=utf-8`
 
 
 database:
+
 <img width="1594" height="273" alt="image" src="https://github.com/user-attachments/assets/8a349868-ef42-4d3b-82ce-4954636da4a7" />
 
 Запуск:
+
 <img width="1905" height="366" alt="image" src="https://github.com/user-attachments/assets/946a088b-3bff-480d-99f4-328c4afc61de" />
 
 Главный экран:
+
 <img width="1734" height="908" alt="image" src="https://github.com/user-attachments/assets/db243b45-e82c-4e04-bcea-58fdd51764aa" />
 
 Также на главном экране есть отзывы клиентов:
+
 <img width="798" height="861" alt="image" src="https://github.com/user-attachments/assets/75859415-7716-4942-9033-ee9699296233" />
 
 И достоинства сети салонов:
+
 <img width="752" height="741" alt="image" src="https://github.com/user-attachments/assets/15688414-fc78-49a0-b4db-17f173bbb408" />
 
 Салон можно выбрать как и с помощью карты(интерактивной) так и из списка.
 
 Для успешной записи нужно войти в свой аккаунт или создать новый, для этого в правом верхнем углу есть кнопка войти, при нажатии на которую появляется коно для авторизации если аккаунт есть или можно нажать кнопку регистрации если аккаунта нет:
+
 <img width="352" height="418" alt="image" src="https://github.com/user-attachments/assets/9b2e55e8-611d-4b34-9fb3-873ba5a80179" />
 <img width="222" height="322" alt="image" src="https://github.com/user-attachments/assets/3859a180-8e8d-463c-b31b-0887f3d03ebf" />
 
 После успешной регистрации или авторизации можно записаться на услугу в определенный салон.
 При выборе салона попадаем на экран выбора специалиста:
+
 <img width="663" height="870" alt="image" src="https://github.com/user-attachments/assets/59edff5b-0a98-4003-89f9-d9ceb4b577ff" />
 
 
 После выбора специалиста, нужно выбрать Услугу и Дату с временем, запись доступна на 30 дней вперед:
+
 <img width="619" height="854" alt="image" src="https://github.com/user-attachments/assets/e034375a-4379-428a-995a-e20830eb2109" />
 
-
 Поcле успешной записи можно зайти на свой профиль и посмотреть историю своих посещений и повторно записаться:
+
 <img width="632" height="790" alt="image" src="https://github.com/user-attachments/assets/72e365f4-4ad1-451c-9eb5-0be2ca2a026a" />
 
 Здесь можно отредактировать свои личные данные:
+
 <img width="418" height="275" alt="image" src="https://github.com/user-attachments/assets/a2f57d72-12f5-4b57-8aa2-822eb248f5f3" />
 
-
 При авторизации под админом admin\admin появляется возможность перейти нав вкладку аналитики:
+
 <img width="644" height="823" alt="image" src="https://github.com/user-attachments/assets/8fb82579-e705-4d97-b6fe-317ec366bd2a" />
 <img width="621" height="862" alt="image" src="https://github.com/user-attachments/assets/425a2a4e-9473-4167-a1e7-c639d7715c63" />
 
 Есть возможность выгрузить любые данные за либой период в формате csv для дальнейшей обработки:
+
 <img width="522" height="241" alt="image" src="https://github.com/user-attachments/assets/11722e31-fee4-49a1-9607-3b779f65400a" />
 
 Пример данных:
+
 <img width="455" height="814" alt="image" src="https://github.com/user-attachments/assets/56fb0b3f-8afc-49fc-bcdf-dc5ad53a592c" />
 
 
