@@ -311,27 +311,35 @@ database:
 <img width="1905" height="366" alt="image" src="https://github.com/user-attachments/assets/946a088b-3bff-480d-99f4-328c4afc61de" />
 
 Главный экран:
-<img width="1891" height="985" alt="image" src="https://github.com/user-attachments/assets/7e825fd0-34e6-4c44-8718-c463a5957d60" />
+<img width="1734" height="908" alt="image" src="https://github.com/user-attachments/assets/db243b45-e82c-4e04-bcea-58fdd51764aa" />
+
+Также на главном экране есть отзывы клиентов:
+<img width="798" height="861" alt="image" src="https://github.com/user-attachments/assets/75859415-7716-4942-9033-ee9699296233" />
+
+И достоинства сети салонов:
+<img width="752" height="741" alt="image" src="https://github.com/user-attachments/assets/15688414-fc78-49a0-b4db-17f173bbb408" />
+
 Салон можно выбрать как и с помощью карты(интерактивной) так и из списка.
 
+Для успешной записи нужно войти в свой аккаунт или создать новый, для этого в правом верхнем углу есть кнопка войти, при нажатии на которую появляется коно для авторизации если аккаунт есть или можно нажать кнопку регистрации если аккаунта нет:
+<img width="352" height="418" alt="image" src="https://github.com/user-attachments/assets/9b2e55e8-611d-4b34-9fb3-873ba5a80179" />
+<img width="222" height="322" alt="image" src="https://github.com/user-attachments/assets/3859a180-8e8d-463c-b31b-0887f3d03ebf" />
+
+После успешной регистрации или авторизации можно записаться на услугу в определенный салон.
 При выборе салона попадаем на экран выбора специалиста:
-<img width="676" height="586" alt="image" src="https://github.com/user-attachments/assets/d8b1febd-3f15-44b4-b13d-927b846ee2f8" />
+<img width="663" height="870" alt="image" src="https://github.com/user-attachments/assets/59edff5b-0a98-4003-89f9-d9ceb4b577ff" />
 
-После выбора специалиста, нужно выбрать Услугу и Дату, запись доступна на 30 дней вперед:
-<img width="688" height="676" alt="image" src="https://github.com/user-attachments/assets/2e57b458-5617-4b73-a878-1a84792007c4" />
 
-Перед этим нужно зарегестрироваться или авторизовасться, иначе не получится записаться, окно регистрации и авторизации: 
-<img width="340" height="365" alt="image" src="https://github.com/user-attachments/assets/32db3282-2475-4bf5-b79c-7dee8efe4809" />
-<img width="279" height="367" alt="image" src="https://github.com/user-attachments/assets/768a576e-add6-413c-8197-2ba1b0259cc5" />
+После выбора специалиста, нужно выбрать Услугу и Дату с временем, запись доступна на 30 дней вперед:
+<img width="619" height="854" alt="image" src="https://github.com/user-attachments/assets/e034375a-4379-428a-995a-e20830eb2109" />
 
-Поcле успешной авторизации можно зайти на свой профиль:
-<img width="629" height="786" alt="image" src="https://github.com/user-attachments/assets/d3b279bc-86f5-4831-80bc-9424c074b729" />
+
+Поcле успешной записи можно зайти на свой профиль и посмотреть историю своих посещений и повторно записаться:
+<img width="632" height="790" alt="image" src="https://github.com/user-attachments/assets/72e365f4-4ad1-451c-9eb5-0be2ca2a026a" />
 
 Здесь можно отредактировать свои личные данные:
-<img width="679" height="310" alt="image" src="https://github.com/user-attachments/assets/c1886809-4762-4f98-986b-27ad85886a37" />
+<img width="418" height="275" alt="image" src="https://github.com/user-attachments/assets/a2f57d72-12f5-4b57-8aa2-822eb248f5f3" />
 
-Также можно посмотреть историю своих посещений и повторно записаться:
-<img width="581" height="870" alt="image" src="https://github.com/user-attachments/assets/cb1d5517-5809-49f0-a4c5-193e949a8358" />
 
 При авторизации под админом admin\admin появляется возможность перейти нав вкладку аналитики:
 <img width="644" height="823" alt="image" src="https://github.com/user-attachments/assets/8fb82579-e705-4d97-b6fe-317ec366bd2a" />
@@ -339,6 +347,10 @@ database:
 
 Есть возможность выгрузить любые данные за либой период в формате csv для дальнейшей обработки:
 <img width="522" height="241" alt="image" src="https://github.com/user-attachments/assets/11722e31-fee4-49a1-9607-3b779f65400a" />
+
+Пример данных:
+<img width="455" height="814" alt="image" src="https://github.com/user-attachments/assets/56fb0b3f-8afc-49fc-bcdf-dc5ad53a592c" />
+
 
 
 
