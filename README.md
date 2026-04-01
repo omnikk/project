@@ -455,7 +455,44 @@ docker compose down
 
 Приложение будет доступно на http://localhost
 
+---
 
+## Запуск на новом устройстве
+
+Для запуска проекта нужно установить только две программы — Git и Docker Desktop. Python, Node.js и другие зависимости не нужны, всё уже внутри Docker образов.
+
+### Шаг 1 — Установить Git
+Скачать и установить с настройками по умолчанию: https://git-scm.com/downloads
+
+### Шаг 2 — Установить Docker Desktop
+Скачать, установить, перезагрузить компьютер: https://www.docker.com/products/docker-desktop
+
+После установки запустить Docker Desktop и дождаться полной загрузки (иконка кита в трее перестанет анимироваться).
+
+### Шаг 3 — Скачать проект
+```bash
+git clone https://github.com/omnikk/project.git
+cd project
+```
+
+### Шаг 4 — Запустить проект
+```bash
+docker compose up --build
+```
+
+### Шаг 5 — Заполнить базу данных (только один раз)
+```bash
+docker exec salon_backend python seed_data.py
+```
+
+### Шаг 6 — Открыть в браузере
+```
+http://localhost
+```
+
+Тестовые аккаунты:
+- Администратор: `admin` / `admin`
+- Клиент: `maria` / `12345`
 
 
 
