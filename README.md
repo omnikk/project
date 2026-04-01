@@ -362,6 +362,98 @@ database:
 
 <img width="455" height="814" alt="image" src="https://github.com/user-attachments/assets/56fb0b3f-8afc-49fc-bcdf-dc5ad53a592c" />
 
+## В данном проекте реализовано
+
+### 1. База данных
+
+**Что используется:** SQLite 3 + SQLAlchemy 2.0 (ORM)
+
+**За что отвечают файлы:**
+
+| Файл | Роль |
+|---|---|
+| `backend/database.py` | Подключение к БД, создание движка и сессий |
+| `backend/models.py` | Описание таблиц: User, Salon, Master, Client, Appointment |
+| `backend/schemas.py` | Pydantic-схемы — валидация входящих и исходящих данных |
+| `backend/seed_data.py` | Заполнение БД тестовыми данными (4 салона, 8 мастеров, 12 клиентов, ~300 записей) |
+
+**Схема данных:**
+```
+User   (1) → (1) Client
+Salon  (1) → (N) Master
+Master (1) → (N) Appointment
+Client (1) → (N) Appointment
+```
+
+**Команды для работы с БД:**
+```bash
+# Создать таблицы и заполнить тестовыми данными (один раз)
+cd backend
+python seed_data.py
+
+# Сбросить БД и заполнить заново
+rm salon.db
+python seed_data.py
+```
+
+---
+
+### 2. React API
+
+**Что используется:** React 18 + Vite 6 + React Router DOM 7
+
+**За что отвечают файлы:**
+
+| Файл / Папка | Роль |
+|---|---|
+| `frontend/src/api/api.js` | Централизованный слой запросов к backend API |
+| `frontend/src/main.jsx` | Точка входа, настройка маршрутов React Router |
+| `frontend/src/pages/` | Страницы: Home, SalonPage, MasterPage, Profile, AdminDashboard, EditProfile |
+| `frontend/src/components/` | Компоненты: Header, Footer, BookingForm, LoginModal, Map, ServiceSelector |
+
+**Маршруты приложения:**
+
+| URL | Страница |
+|---|---|
+| `/` | Главная — список салонов и карта |
+| `/salon/:id` | Страница салона со списком мастеров |
+| `/master/:id` | Страница мастера, форма записи |
+| `/profile` | Личный кабинет клиента |
+| `/edit-profile` | Редактирование профиля |
+| `/admin` | Панель аналитики (только для admin) |
+
+---
+
+### 3. Docker
+
+**Что используется:** Docker + Docker Compose
+
+**Структура файлов:**
+
+| Файл | Описание |
+|---|---|
+| `backend/Dockerfile` | Образ backend: Python 3.10-slim + uvicorn |
+| `frontend/Dockerfile` | Образ frontend: сборка React → nginx |
+| `frontend/nginx.conf` | Конфиг nginx: раздача SPA + проксирование к backend |
+| `docker-compose.yml` | Оркестрация: запуск backend и frontend одной командой |
+| `.dockerignore` | Исключения при сборке образов |
+
+**Запуск через Docker:**
+```bash
+# Первый запуск — сборка и старт
+docker compose up --build
+
+# Заполнить БД тестовыми данными (один раз после первого запуска)
+docker exec salon_backend python seed_data.py
+
+# Последующие запуски
+docker compose up
+
+# Остановить
+docker compose down
+```
+
+Приложение будет доступно на http://localhost
 
 
 
