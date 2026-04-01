@@ -96,11 +96,11 @@ const AdminDashboard = () => {
       const queryString = params.toString();
 
       const [overviewRes, financialRes, revenueSalonRes, revenueServiceRes, earningsRes] = await Promise.all([
-        fetch(`http://localhost:8080/api/analytics/overview`),
-        fetch(`http://localhost:8080/api/analytics/filtered-overview?${queryString}`),
-        fetch(`http://localhost:8080/api/analytics/filtered-revenue-by-salon?${queryString}`),
-        fetch(`http://localhost:8080/api/analytics/filtered-revenue-by-service?${queryString}`),
-        fetch(`http://localhost:8080/api/analytics/filtered-master-earnings?${queryString}`)
+        fetch(`/api/analytics/overview`),
+        fetch(`/api/analytics/filtered-overview?${queryString}`),
+        fetch(`/api/analytics/filtered-revenue-by-salon?${queryString}`),
+        fetch(`/api/analytics/filtered-revenue-by-service?${queryString}`),
+        fetch(`/api/analytics/filtered-master-earnings?${queryString}`)
       ]);
 
       setOverview(await overviewRes.json());
@@ -117,19 +117,19 @@ const AdminDashboard = () => {
   };
 
   const handleExportAll = () => {
-    window.open("http://localhost:8080/api/analytics/export-csv", "_blank");
+    window.open("/api/analytics/export-csv", "_blank");
   };
 
   const handleExportFinancial = () => {
-    window.open("http://localhost:8080/api/analytics/export-financial-csv", "_blank");
+    window.open("/api/analytics/export-financial-csv", "_blank");
   };
 
   const handleExportMasters = () => {
-    window.open("http://localhost:8080/api/analytics/export-masters-csv", "_blank");
+    window.open("/api/analytics/export-masters-csv", "_blank");
   };
 
   const handleExportServices = () => {
-    window.open("http://localhost:8080/api/analytics/export-services-csv", "_blank");
+    window.open("/api/analytics/export-services-csv", "_blank");
   };
 
   if (loading) {

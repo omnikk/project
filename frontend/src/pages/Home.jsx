@@ -165,25 +165,25 @@ const Home = () => {
           
           <div className="salons-grid">
             {salons.map(salon => (
-              <div key={salon.id} className="card">
-                <img 
-                  src={salon.photo_url || "https://med-rzn.ru/wp-content/uploads/2021/09/no_image-800x600-1.jpg"}
-                  alt={salon.name}
-                  style={{
-                    width: '100%',
-                    height: '150px',
-                    objectFit: 'cover',
-                    borderRadius: '10px',
-                    marginBottom: '15px'
-                  }}
-                />
-                <h3>{salon.name}</h3>
-                <p>📍 {salon.address}</p>
-                <p>🕐 09:00 - 21:00</p>
-                <Link to={`/salon/${salon.id}`}>
+              <Link key={salon.id} to={`/salon/${salon.id}`} style={{ textDecoration: 'none' }}>
+                <div className="card">
+                  <img
+                    src={salon.photo_url || "https://med-rzn.ru/wp-content/uploads/2021/09/no_image-800x600-1.jpg"}
+                    alt={salon.name}
+                    style={{
+                      width: '100%',
+                      height: '150px',
+                      objectFit: 'cover',
+                      borderRadius: '10px',
+                      marginBottom: '15px'
+                    }}
+                  />
+                  <h3>{salon.name}</h3>
+                  <p>📍 {salon.address}</p>
+                  <p>🕐 09:00 - 21:00</p>
                   <button>Подробнее →</button>
-                </Link>
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>

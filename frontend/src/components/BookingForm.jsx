@@ -21,7 +21,7 @@ const BookingForm = ({ master, onClose, onSuccess }) => {
 
   const loadServices = async () => {
     try {
-      const response = await fetch("http://localhost:8080/services-with-prices/");
+      const response = await fetch("/services-with-prices/");
       const data = await response.json();
       setServices(data);
     } catch (error) {
@@ -32,7 +32,7 @@ const BookingForm = ({ master, onClose, onSuccess }) => {
   const loadAvailableSlots = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/masters/${master.id}/available-slots?date=${selectedDate}`
+        `/masters/${master.id}/available-slots?date=${selectedDate}`
       );
       const data = await response.json();
       setAvailableSlots(data);
@@ -59,13 +59,13 @@ const BookingForm = ({ master, onClose, onSuccess }) => {
 
     try {
       const clientResponse = await fetch(
-        `http://localhost:8080/users/${user.id}/client`
+        `/users/${user.id}/client`
       );
       let client = await clientResponse.json();
 
       if (!client) {
         const newClientResponse = await fetch(
-          "http://localhost:8080/clients/",
+          "/clients/",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -105,7 +105,7 @@ const BookingForm = ({ master, onClose, onSuccess }) => {
 
       console.log("Отправляем запись:", appointmentData); // Для отладки
 
-      const response = await fetch("http://localhost:8080/appointments/", {
+      const response = await fetch("/appointments/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(appointmentData),

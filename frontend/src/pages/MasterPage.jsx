@@ -17,12 +17,12 @@ const MasterPage = () => {
 
   const loadMaster = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/masters/${id}`);
+      const response = await fetch(`/masters/${id}`);
       const data = await response.json();
       setMaster(data);
 
       const salonResponse = await fetch(
-        `http://localhost:8080/salons/${data.salon_id}`
+        `/salons/${data.salon_id}`
       );
       const salonData = await salonResponse.json();
       setSalon(salonData);

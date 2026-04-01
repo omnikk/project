@@ -27,7 +27,7 @@ const EditProfile = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:8080/users/${user.id}`, {
+      const response = await fetch(`/users/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
